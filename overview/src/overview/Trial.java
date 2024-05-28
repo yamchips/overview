@@ -3,7 +3,10 @@ package overview;
 public class Trial {
 
   public static void main(String[] args) {
-    System.out.print("Hello world!");
+    // x ? a : b
+    int x = -100;
+    int y = x > 0 ? x : -x;
+    System.out.print(y);
   }
 
 }
