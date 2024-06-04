@@ -1,7 +1,6 @@
 package overview;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 public class Basics {
 
@@ -21,7 +20,8 @@ public class Basics {
     // array in java
     int[] nums1 = new int[5];
     int[] nums2 = {1, 2, 3, 4, 5};
-    int a = nums1.length;
+    int a = nums2.length;
+    System.out.println(Arrays.toString(nums2));
     
     // output, println means print something then change a line
     System.out.print("A,");
@@ -81,7 +81,8 @@ public class Basics {
     System.out.println(Arrays.toString(nums));
     Arrays.sort(nums);
     System.out.println(Arrays.toString(nums));
-    // 2-dimension array
+    
+    // 2-dimension array, use deepToString to print out
     int[][] ns = {
         { 1, 2, 3, 4 },
         { 5, 6, 7, 8 },
@@ -89,12 +90,7 @@ public class Basics {
     };
     System.out.println(Arrays.deepToString(ns));
     
-    Comparator<String> lengthComparator = new Comparator<String>() {
-      @Override
-      public int compare(String s1, String s2) {
-        return Integer.compare(s1.length(), s2.length());
-      }
-    };
+
     
     
     
