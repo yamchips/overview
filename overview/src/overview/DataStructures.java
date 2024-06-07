@@ -75,7 +75,8 @@ public class DataStructures {
     sb.reverse();
     System.out.println(sb);
     
-    /* Stack: built-in data type. LIFO queue.*/
+    /* Stack: built-in data type. LIFO queue.
+       add element: push; delete element: pop; inspect element: peek. */
     Stack<Character> stack = new Stack<>();
     stack.push('a');
     stack.push('b');
@@ -85,11 +86,13 @@ public class DataStructures {
     System.out.println(stack.pop());
     System.out.println(stack);
     
-    /* ArrayDeque: inherited from Deque. FIFO queue.*/
+    /* ArrayDeque: inherited from Deque. FIFO queue.
+       add element: offer; delete element: poll; inspect element: peek. */
     Queue<Character> queue = new ArrayDeque<>();
-    queue.add('a');
-    queue.add('b');
-    queue.add('c');
+    queue.offer('a');
+    queue.offer('b');
+    queue.offer('c');
+    
     System.out.println(queue);
     System.out.println(queue.peek());
     queue.poll();
@@ -97,13 +100,17 @@ public class DataStructures {
     System.out.println(queue);
     
     
-    /* ArrayDeque: Double-end operation. Use Deque interface. */
+    /* ArrayDeque: Double-ended queue. Use Deque interface. 
+       add element: offerLast/offerFirst; delete element: pollFirst/pollLast;
+       inspect element: peekFirst/peekLast. */
     Deque<Character> dq = new ArrayDeque<>();
-    dq.addLast('a');
-    dq.addFirst('b');
-    dq.addLast('c');
-    System.out.println(dq.getFirst());
-    System.out.println(dq.getLast());
+    dq.offerLast('a');
+    dq.offerFirst('b');
+    dq.offerLast('c');
+    
+    System.out.println(dq.pollFirst());
+    System.out.println(dq.peekFirst());
+    System.out.println(dq.peekLast());
     
     
     
