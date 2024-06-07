@@ -90,7 +90,9 @@ public class Basics {
     };
     System.out.println(Arrays.deepToString(ns));
     
-
+    String str = "apple";
+    char[] strArray = str.toCharArray();
+    System.out.println(strArray);
     
     
     

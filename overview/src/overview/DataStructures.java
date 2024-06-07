@@ -1,8 +1,12 @@
 package overview;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
 
 public class DataStructures {
 
@@ -28,7 +32,8 @@ public class DataStructures {
     System.out.println(last);
     System.out.println(linkedList);
     
-    /* Array: built-in data type. We often use its field length. */
+    /* Array: built-in data type. We often use its field length. 
+       String also has a length(), but with parenthesis.*/
     int[] nums = {5, 1, 2, 3, 4};
     System.out.println(nums.length);
     // use Arrays.toString() to print
@@ -69,6 +74,38 @@ public class DataStructures {
     // reverse
     sb.reverse();
     System.out.println(sb);
+    
+    /* Stack: built-in data type. LIFO queue.*/
+    Stack<Character> stack = new Stack<>();
+    stack.push('a');
+    stack.push('b');
+    stack.push('c');
+    System.out.println(stack);
+    System.out.println(stack.peek());
+    System.out.println(stack.pop());
+    System.out.println(stack);
+    
+    /* ArrayDeque: inherited from Deque. FIFO queue.*/
+    Queue<Character> queue = new ArrayDeque<>();
+    queue.add('a');
+    queue.add('b');
+    queue.add('c');
+    System.out.println(queue);
+    System.out.println(queue.peek());
+    queue.poll();
+    queue.offer('d');
+    System.out.println(queue);
+    
+    
+    /* ArrayDeque: Double-end operation. Use Deque interface. */
+    Deque<Character> dq = new ArrayDeque<>();
+    dq.addLast('a');
+    dq.addFirst('b');
+    dq.addLast('c');
+    System.out.println(dq.getFirst());
+    System.out.println(dq.getLast());
+    
+    
     
   }
 
