@@ -5,6 +5,10 @@ import java.util.Arrays;
 public class Basics {
 
   public static void main(String[] args) {
+    // int calculation, only returns the integer part
+    System.out.println(9/2);
+    
+    
     // x ? a : b
     int x = -100;
     int y = x > 0 ? x : -x;
@@ -93,7 +97,6 @@ public class Basics {
     String str = "apple";
     char[] strArray = str.toCharArray();
     System.out.println(strArray);
-    
     
     
   }
