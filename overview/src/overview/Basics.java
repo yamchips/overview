@@ -5,9 +5,12 @@ import java.util.Arrays;
 public class Basics {
 
   public static void main(String[] args) {
+    int[] array1 = {2};
+    int[] res = Arrays.copyOfRange(array1, 1, 1);
+    System.out.println(Arrays.toString(res));
+    
     // int calculation, only returns the integer part
     System.out.println(9/2);
-    
     
     // x ? a : b
     int x = -100;
