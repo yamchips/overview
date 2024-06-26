@@ -1,10 +1,19 @@
 package overview;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class Basics {
 
   public static void main(String[] args) {
+    // stream
+    ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    Stream<Integer> numStream = numbers.stream();
+    
+    
+    
+    // array copy
     int[] array1 = {2};
     int[] res = Arrays.copyOfRange(array1, 1, 1);
     System.out.println(Arrays.toString(res));
