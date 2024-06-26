@@ -2,20 +2,29 @@ package overview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Basics {
 
   public static void main(String[] args) {
-    // stream
+    // stream, eg: get the sum of an ArrayList
     ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    // in separate ways:
     Stream<Integer> numStream = numbers.stream();
-    
+    IntStream intStream = numStream.mapToInt(i -> i.intValue());
+    int summation = intStream.sum();
+    // in consecutive ways:
+    int summation2 = numbers.stream().mapToInt(Integer::intValue).sum();
+       
     
     
     // array copy
     int[] array1 = {2};
     int[] res = Arrays.copyOfRange(array1, 1, 1);
+    int[] res2 = array1.clone();
+    int[] res3 = Arrays.copyOf(array1, 1);
+    
     System.out.println(Arrays.toString(res));
     
     // int calculation, only returns the integer part

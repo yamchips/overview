@@ -1,7 +1,6 @@
 package backTrack;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -13,51 +12,37 @@ import java.util.stream.IntStream;
 public class Solution {
 
   public static void main(String[] args) {
-    //Solution.combinationSum(new int[] {8,7,4,3}, 11);
-    Solution.combinationSum(new int[] {2,3,6,7}, 7);
-//    Solution.generateParenthesis(3);
-    // Solution.permute(new int[] { 1, 2, 3 });
-//    List<List<Integer>> res = Solution.subsets3(new int[] { 0, 1, 2, 3, 4 });
-//    System.out.println(res);
-//    List<List<Integer>> list = new ArrayList<>();
-//    list.add(new ArrayList<>());
-//    list.add(new ArrayList<>(Arrays.asList(1,2,3)));
-//    ArrayList<Integer> temp1 = new ArrayList<>(Arrays.asList(3,2,1));
-//    ArrayList<Integer> temp2 = new ArrayList<>(Arrays.asList(3,2,4,6));
-//    System.out.println(Solution.hasduplicate(list, temp1));
-//    System.out.println(Solution.hasduplicate(list, temp2));
+    List<List<Integer>> res = Solution.combinationSum(new int[] {2,3,6,7}, 7);
+    res.forEach(innerList -> {
+      String line = innerList.stream().map(String::valueOf).collect(Collectors.joining(" "));
+      System.out.println(line);
+    });
   }
 
   public static List<List<Integer>> combinationSum(int[] candidates, int target) {
     List<List<Integer>> res = new ArrayList<>();
-    Arrays.sort(candidates);
-    backtrack(res, new ArrayList<Integer>(), candidates, target, 0, 0);
+    //Arrays.sort(candidates);
+    backtrack(res, new ArrayList<Integer>(), candidates, target, 0);
     return res;
   }
 
   private static void backtrack(List<List<Integer>> res, ArrayList<Integer> temp, int[] candidates,
-      int target, int p1, int p2) {
+      int target, int p1) {
     if (temp.stream().mapToInt(Integer::intValue).sum() == target) {
       res.add(new ArrayList<>(temp));
       return;
     }
-    
+    if (temp.stream().mapToInt(Integer::intValue).sum() > target) {
+      return;
+    }
     
     while (p1 < candidates.length) {
       if (temp.stream().mapToInt(Integer::intValue).sum() < target) {
-        temp.add(candidates[p2]);
+        temp.add(candidates[p1]);
       }
-      if (temp.stream().mapToInt(Integer::intValue).sum() > target) {
-        temp.remove(temp.size() - 1);
-        p2++;
-        if (p2 == candidates.length) {
-          break;
-        }
-      }
-      backtrack(res, temp, candidates, target, p1, p2);
-      if (temp.size() > 0) temp.remove(temp.size() - 1);
+      backtrack(res, temp, candidates, target, p1);
+      temp.remove(temp.size() - 1);
       p1++;
-      p2 = p1;
     }
 
   }
