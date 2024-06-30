@@ -6,24 +6,123 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Solution {
 
   public static void main(String[] args) {
-    List<List<Integer>> res = Solution.combinationSum(new int[] {2,3,6,7}, 7);
-    res.forEach(innerList -> {
-      String line = innerList.stream().map(String::valueOf).collect(Collectors.joining(" "));
-      System.out.println(line);
-    });
+    List<String> res = Solution.letterCombinations("23");
+    res.forEach(s -> System.out.println(s));
+    // List<List<Integer>> res = Solution.combinationSum(new int[] { 2, 3, 6, 7 },
+    // 7);
+//    res.forEach(innerList -> {
+//      String line = innerList.stream().map(String::valueOf).collect(Collectors.joining(" "));
+//      System.out.println(line);
+//    });
+  }
+
+  public static List<String> letterCombinations(String digits) {
+    if (digits.length() == 0)
+      return new ArrayList<>();
+    Map<Character, String> map = Map.of('2', "abc", '3', "def", '4', "ghi", 
+        '5', "jkl", '6', "mno", '7', "pqrs", '8', "tuv", '9', "wxyz");
+    List<String> res = new ArrayList<>();
+    for (int i = 0; i < digits.length(); i++) {
+      char[] letters = map.get(digits.charAt(i)).toCharArray();
+      if (i == 0) {
+        for (int j = 0; j < letters.length; j++) {
+          String newString = letters[j] + "";
+          res.add(newString);
+        }
+      } else {
+        int size = res.size();
+        for (int k = 0; k < size; k++) {
+          for (int j = 0; j < letters.length; j++) {
+            String newString = res.get(k) + letters[j];
+            res.add(newString);
+          }
+        }
+      }
+    }
+    res.removeIf(s -> s.length() < digits.length());
+    return res;
+
+  }
+
+  public static List<List<String>> solveNQueens(int n) {
+    List<List<Integer>> list = new ArrayList<>();
+    backtrack(list, new ArrayList<>(), n);
+    List<List<String>> res = transfer(list, n);
+    return res;
+  }
+
+  private static void backtrack(List<List<Integer>> list, List<Integer> temp, int n) {
+    if (!isgoal(temp)) {
+      return;
+    } else if (temp.size() == n) {
+      list.add(new ArrayList<>(temp));
+      return;
+    }
+    for (int i = 0; i < n; i++) {
+      if (temp.contains(i))
+        continue;
+      temp.add(i);
+      backtrack(list, temp, n);
+      temp.remove(temp.size() - 1);
+    }
+  }
+
+  private static boolean isgoal(List<Integer> temp) {
+    for (int i = 0; i < temp.size(); i++) {
+      for (int j = i + 1; j < temp.size(); j++) {
+        if (temp.get(i) == temp.get(j) || Math.abs(temp.get(j) - temp.get(i)) == j - i)
+          return false;
+      }
+    }
+    return true;
+  }
+
+  private static List<List<String>> transfer(List<List<Integer>> list, int n) {
+    List<List<String>> res = new ArrayList<>();
+    for (List<Integer> element : list) {
+      List<String> solution = new ArrayList<>();
+      for (int i = 0; i < n; i++) {
+        int pos = element.get(i);
+        StringBuilder sb = new StringBuilder();
+        for (int j = 0; j < n; j++) {
+          if (j != pos) {
+            sb.append('.');
+          } else {
+            sb.append('Q');
+          }
+        }
+        solution.add(sb.toString());
+      }
+      res.add(new ArrayList<>(solution));
+    }
+    return res;
   }
 
   public static List<List<Integer>> combinationSum(int[] candidates, int target) {
     List<List<Integer>> res = new ArrayList<>();
-    //Arrays.sort(candidates);
-    backtrack(res, new ArrayList<Integer>(), candidates, target, 0);
+    // Arrays.sort(candidates);
+    backtrack2(res, new ArrayList<Integer>(), candidates, target, 0);
     return res;
+  }
+
+  private static void backtrack2(List<List<Integer>> res, ArrayList<Integer> temp, int[] candidates,
+      int remain, int p1) {
+    if (remain == 0) {
+      res.add(new ArrayList<>(temp));
+      return;
+    }
+    if (remain < 0) {
+      return;
+    }
+    for (int i = p1; i < candidates.length; i++) {
+      temp.add(candidates[i]);
+      backtrack2(res, temp, candidates, remain - candidates[i], p1);
+      temp.remove(temp.size() - 1);
+    }
   }
 
   private static void backtrack(List<List<Integer>> res, ArrayList<Integer> temp, int[] candidates,
@@ -35,7 +134,7 @@ public class Solution {
     if (temp.stream().mapToInt(Integer::intValue).sum() > target) {
       return;
     }
-    
+
     while (p1 < candidates.length) {
       if (temp.stream().mapToInt(Integer::intValue).sum() < target) {
         temp.add(candidates[p1]);
@@ -202,20 +301,4 @@ public class Solution {
     }
   }
 
-  public static List<List<String>> solveNQueens(int n) {
-    int[] board = new int[n];
-
-    List<ArrayList<Integer>> elements = new ArrayList<ArrayList<Integer>>();
-    for (int i = 0; i < n; i++) {
-      ArrayList<Integer> innerList = IntStream.range(0, n).boxed()
-          .collect(Collectors.toCollection(ArrayList::new));
-      elements.add(innerList);
-    }
-    int index = 0;
-    while (index < n) {
-
-    }
-
-    return null;
-  }
 }

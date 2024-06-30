@@ -2,6 +2,7 @@ package overview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -17,7 +18,8 @@ public class Basics {
     // in consecutive ways:
     int summation2 = numbers.stream().mapToInt(Integer::intValue).sum();
        
-    
+    // create a map
+    Map<Character, String> map = Map.of('2', "abc", '3', "def");
     
     // array copy
     int[] array1 = {2};
