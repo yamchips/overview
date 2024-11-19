@@ -10,8 +10,12 @@ import java.util.Set;
 public class Solution {
 
   public static void main(String[] args) {
-    List<String> res = Solution.letterCombinations("23");
-    res.forEach(s -> System.out.println(s));
+    char[][] board = { { 'A', 'B', 'C', 'E' }, { 'S', 'F', 'C', 'S' },
+        { 'A', 'D', 'E', 'E' } };
+    String word = "ABCCED";
+    System.out.println(exist(board, word));
+//    List<String> res = Solution.letterCombinations("23");
+//    res.forEach(s -> System.out.println(s));
     // List<List<Integer>> res = Solution.combinationSum(new int[] { 2, 3, 6, 7 },
     // 7);
 //    res.forEach(innerList -> {
@@ -20,11 +24,55 @@ public class Solution {
 //    });
   }
 
+  public static boolean exist(char[][] board, String word) {
+    int m = board.length;
+    int n = board[0].length;
+
+    boolean[][] visited = new boolean[m][n];
+    boolean result = false;
+
+    for (int i = 0; i < m; i++) {
+      for (int j = 0; j < n; j++) {
+        if (board[i][j] == word.charAt(0)) {
+          result = backtrack(board, word, visited, i, j, 0);
+          if (result)
+            return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+  private static boolean backtrack(char[][] board, String word, boolean[][] visited, int i, int j,
+      int index) {
+    if (index == word.length()) {
+      return true;
+    }
+
+    if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j]
+        || board[i][j] != word.charAt(index)) {
+      return false;
+    }
+
+    visited[i][j] = true;
+
+    if (backtrack(board, word, visited, i + 1, j, index + 1)
+        || backtrack(board, word, visited, i - 1, j, index + 1)
+        || backtrack(board, word, visited, i, j + 1, index + 1)
+        || backtrack(board, word, visited, i, j - 1, index + 1)) {
+      return true;
+    }
+
+    visited[i][j] = false;
+    return false;
+  }
+
   public static List<String> letterCombinations(String digits) {
     if (digits.length() == 0)
       return new ArrayList<>();
-    Map<Character, String> map = Map.of('2', "abc", '3', "def", '4', "ghi", 
-        '5', "jkl", '6', "mno", '7', "pqrs", '8', "tuv", '9', "wxyz");
+    Map<Character, String> map = Map.of('2', "abc", '3', "def", '4', "ghi", '5', "jkl", '6', "mno",
+        '7', "pqrs", '8', "tuv", '9', "wxyz");
     List<String> res = new ArrayList<>();
     for (int i = 0; i < digits.length(); i++) {
       char[] letters = map.get(digits.charAt(i)).toCharArray();

@@ -22,6 +22,7 @@ public class DataStructures {
     linkedList.addLast("banana");
     System.out.println(linkedList);
     
+    
     System.out.println(linkedList.getFirst());
     System.out.println(linkedList.getLast());
     System.out.println(linkedList.get(1));
@@ -35,6 +36,9 @@ public class DataStructures {
     /* Array: built-in data type. We often use its field length. 
        String also has a length(), but with parenthesis.*/
     int[] nums = {5, 1, 2, 3, 4};
+    
+    //int[] nums = new int[5];
+    //System.out.println();
     System.out.println(nums.length);
     // use Arrays.toString() to print
     System.out.println(Arrays.toString(nums));
@@ -51,6 +55,8 @@ public class DataStructures {
     String[] strs = {"flow", "flower", "flag", "flamingo", "fa"};
     // sort only sort by lexicographical order
     Arrays.sort(strs);
+    
+    
     System.out.println(Arrays.toString(strs));
     Arrays.sort(strs, lengthComparator);
     System.out.println(Arrays.toString(strs));
@@ -63,8 +69,8 @@ public class DataStructures {
     sb.deleteCharAt(sb.length() - 1);
     System.out.println(sb); // tes
     // insert string at a specific position
-    sb.insert(1, 2); // 1 means insert at index 1, original index 1 becomes index 2
-    System.out.println(sb); // t2es
+    sb.insert(1, 'w'); // 1 means insert at index 1, original index 1 becomes index 2
+    System.out.println(sb); // twes
     // replace
     sb.replace(0, 2, "java");
     System.out.println(sb); // javaes
@@ -74,6 +80,7 @@ public class DataStructures {
     // reverse
     sb.reverse();
     System.out.println(sb);
+    String res = sb.toString();
     
     /* Stack: built-in data type. LIFO queue.
        add element: push; delete element: pop; inspect element: peek. */
@@ -85,6 +92,7 @@ public class DataStructures {
     System.out.println(stack.peek());
     System.out.println(stack.pop());
     System.out.println(stack);
+    stack.forEach(null);
     
     /* ArrayDeque: inherited from Deque. FIFO queue.
        add element: offer; delete element: poll; inspect element: peek. */

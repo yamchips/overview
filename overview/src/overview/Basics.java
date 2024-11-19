@@ -2,15 +2,43 @@ package overview;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Basics {
-
+  
   public static void main(String[] args) {
+    // variable
+    int[] numsArray = new int[] {1, 2, 3, 4};
+//    int[] tempNums = numsArray;
+    numsArray[0] = 9;
+//    System.out.println(Arrays.toString(tempNums));
+    
+    //Arrays.sort(numsArray, Collections.reverseOrder());
+    
+    
+    String temp = "abcdefg";
+    System.out.println(temp.substring(0, 0));
+    
+    System.out.println('A' - 'a');
+    
+    // lambda expression
+    List<String> list = Arrays.asList("apple", "banana", "cherry");
+
+    // Using lambda expression to print each element
+    Consumer<String> exp1 = (s) -> System.out.println("test");
+    list.forEach(exp1);
+
+    // Using lambda expression with a custom functional interface
+    Consumer<String> print = (s) -> System.out.println("Fruit: " + s);
+    list.forEach(print);
+    
     // stream, eg: get the sum of an ArrayList
     ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+    numbers.remove(Integer.valueOf(2));
     // in separate ways:
     Stream<Integer> numStream = numbers.stream();
     IntStream intStream = numStream.mapToInt(i -> i.intValue());
@@ -20,6 +48,14 @@ public class Basics {
        
     // create a map
     Map<Character, String> map = Map.of('2', "abc", '3', "def");
+    // traverse map
+    for (char c : map.keySet()) {
+      // do something
+    }
+    for (Map.Entry<Character, String> entry : map.entrySet()) {
+      // do something
+      
+    }
     
     // array copy
     int[] array1 = {2};
@@ -28,6 +64,7 @@ public class Basics {
     int[] res3 = Arrays.copyOf(array1, 1);
     
     System.out.println(Arrays.toString(res));
+    System.out.println(Arrays.toString(res3));
     
     // int calculation, only returns the integer part
     System.out.println(9/2);
@@ -47,6 +84,9 @@ public class Basics {
     // array in java
     int[] nums1 = new int[5];
     int[] nums2 = {1, 2, 3, 4, 5};
+    int[][] nums3 = { { 1, 2, 3 }, { 3, 4, 5 }, { 4, 5, 6 } };
+    nums3[0][1] = 9;
+    
     int a = nums2.length;
     System.out.println(Arrays.toString(nums2));
     
@@ -105,6 +145,7 @@ public class Basics {
       System.out.println(num);
     }
     // Arrays.sort changes array in place
+    System.arraycopy(s, num2, res, num3, opt);
     System.out.println(Arrays.toString(nums));
     Arrays.sort(nums);
     System.out.println(Arrays.toString(nums));
